@@ -1,0 +1,10 @@
+{
+    "domain": "qweather",
+    "name": "qweather",
+    "documentation": "https://github.com/KotaHv/qweather",
+    "dependencies": [],
+    "codeowners": ["KotaHv"],
+    "requirements": [],
+    "iot_class": "cloud_polling",
+    "version": "0.0.3"
+  }
