@@ -13,6 +13,7 @@ from homeassistant.components.weather import (
     ATTR_FORECAST_WIND_BEARING,
     ATTR_FORECAST_WIND_SPEED,
     ATTR_FORECAST_PRESSURE,
+    ATTR_FORECAST_PRECIPITATION_PROBABILITY,
 )
 from homeassistant.const import (
     TEMP_CELSIUS,
@@ -97,7 +98,7 @@ class QWeather(WeatherEntity):
 
     @property
     def temperature_unit(self):
-        """湿度单位"""
+        """温度单位"""
         return TEMP_CELSIUS
 
     @property
@@ -108,7 +109,7 @@ class QWeather(WeatherEntity):
     @property
     def humidity(self):
         """湿度"""
-        return float(self._current["cloud"])
+        return float(self._current["humidity"])
 
     @property
     def wind_speed(self):
@@ -220,6 +221,10 @@ class QWeather(WeatherEntity):
                     ATTR_FORECAST_WIND_BEARING: float(daily["wind360Day"]),
                     ATTR_FORECAST_WIND_SPEED: float(daily["windSpeedDay"]),
                     ATTR_FORECAST_PRECIPITATION: float(daily["precip"]),
+                    "humidity": float(daily["humidity"]),
+                    ATTR_FORECAST_PRECIPITATION_PROBABILITY: int(
+                        daily["humidity"]
+                    ),  # 没有降雨率
                     ATTR_FORECAST_PRESSURE: float(daily["pressure"]),
                 }
             )
